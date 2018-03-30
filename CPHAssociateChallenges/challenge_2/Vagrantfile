@@ -14,5 +14,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     challenge.vm.provision "shell", inline: "sudo install -m 755 -o root -g root /tmp/wattime.sh /usr/bin"
     challenge.vm.provision "shell", inline: "sudo crontab -u root /tmp/cronroot; sudo /etc/init.d/crond restart"
+	
+	challenge.vm.provision :shell, path: "update.sh"
+	challenge.vm.provision :shell, path: "installPython.sh"
+	
+	#challenge.vm.provision "shell", inline: "sudo yum update -y"
+	#challenge.vm.provision "shell", inline: "sudo yum install yum-utils -y"
+	#challenge.vm.provision "shell", inline: "sudo yum groupinstall development -y"
+	
+	#challenge.vm.provision "file", source: "app.py", destination: "/usr/app.py"
   end
 end
